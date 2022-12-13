@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\register;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+    
+// });
+Route::middleware('auth:sanctum')->group(function(){
+route::post('logout',[register::class,'logout']);
 });
+route::post('signup',[register::class,'insert_reg']);
+route::post('login',[register::class,'login']);
+route::get('get_users',[register::class,'get_users']);
